@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CS2 Q4 Gallery</title>
+	<meta charset="UTF-8"> 
+	<link rel="stylesheet" href="css/styles.css">
+<style>
+html
+{
+    background-color:#000000;
+    font-size: 1.2em;
+    font-family: Arial, Helvetica, sans-serif;
+    border:0px;
+    padding:0px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+body
+{
+    border:0px;
+    padding-left:0px;
+    padding-right:0px;
+    padding-top:0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    text-align: center;
+    height: 100%;
+    overflow:hidden;
+}
+
+div.headerBar
+{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+div.headerItem {
+    flex: 0 1 200px; /*  No stretching: */
+    margin: 10px;
+    font-size: 24pt;
+    font-family:'Courier New', Courier, monospace;
+    text-decoration: underline;
+}
+
+div.arcadeTop
+{
+    display: grid;
+    grid-template-columns: minmax(500px, 50%) 1fr;
+}
+
+div.barTop{
+    background-color: black;
+    position: absolute;
+    top: -4px;
+    left: 0px;
+    width: 1080px;
+    height: 45px;
+}
+div.barLeft{
+    background-color: black;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 10px;
+    height: 450px;
+}
+div.barRight{
+    background-color: black;
+    position: absolute;
+    top: 0px;
+    left: 892px;
+    width: 10px;
+    height: 450px;
+}
+div.barBottom{
+    background-color: black;
+    position: absolute;
+    top: 445px;
+    left: 0px;
+    width: 1080px;
+    height: 20px;
+}
+
+div.grid
+{
+    display: grid;
+    grid-template-areas: "headl headc headr"
+						 "left1 code right1"
+						 "left2 combo right2";
+    grid-template-rows: 1px 440px 100px;
+    grid-template-columns: 10px 1060px 10px;
+}
+
+button.grid
+{
+    width:100px; 
+    height:100px; 
+    margin:20px;
+    font-size: 60px;
+    background-color: darkgray;
+}
+
+select.grid
+{
+    font-size: 1.0em;
+    padding: 10px;
+    border: 0px; 
+    padding: 10px; 
+    width: 800px;
+    height:50px;
+    margin-top:20px;
+    text-align: center;
+}
+
+.parent {
+    display: grid;
+    place-items: center;
+}
+
+.visual {
+    aspect-ratio: 16 / 9;
+    width: clamp(100px, 100%, 2048px);
+    background-color: lightgreen;
+}
+
+.card {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    background-color:lightblue;
+}
+
+.gray
+{
+    background-color:gray;
+}
+</style>
+</head>
+<body>	
+<div class="barTop">
+		<p style="margin-top: 10px; color:white; font-weight:bold; font-family:Verdana, Geneva, Tahoma, sans-serif">&nbsp;</p>
+	</div>
+	<div class="barLeft"></div>
+	<div class="barRight"></div>
+	<div class="barBottom"></div>
+	<div class="grid" style='margin-top:-12px'>
+		<iframe id="project" 
+				src="https://academy.cs.cmu.edu/sharing/tomatoBear5233/embed"
+				style="width:800px; 
+						height:451px;
+						border:black;
+						color:black;
+						background-color: black;
+						grid-area: code;"></iframe>
+		<p style="font-size: 2px;"></p>
+		<select class="grid" id="dropdown" 
+			style="grid-area: combo; text-align: left;"
+			onchange="updateVideoChosen()">
+
+                        <option value="0">***Choose a project...</option>
+                        <option value="1">blackPanda5025</option>
+                        <option value="2">blackTurtle5967</option>
+                        <option value="3">blueCrow2499</option>
+                        <option value="4">grayBeaver4710</option>
+                        <option value="5">grayBison6993</option>
+                        <option value="6">grayOwl1948</option>
+                        <option value="7">pinkKoala3185</option>
+                        <option value="8">whiteGerbil7658</option>
+                        <option value="9">whiteKoala6200</option>
+
+			</select>
+	</div>
+
+
+
+
+
+<p align='left'>&nbsp;&nbsp;
+<button type='button' style='color:black;font-size:16pt;' onclick="updateVideoChosen()">&nbsp;&nbsp;reload app&nbsp;&nbsp;</button>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<button type='button' style='color:black;font-size:16pt;left:700px' onclick="nextVideoChosen()">&nbsp;&nbsp;&nbsp;next app&nbsp;&nbsp;&nbsp;</button>
+</p>
+<script>
+function nextVideoChosen()
+{
+  document.getElementById('dropdown').selectedIndex += 1;
+  updateVideoChosen();
+}
+
+
+
+
+var projectList = [
+"https://academy.cs.cmu.edu/sharing/tomatoBear5233/embed",
+"https://academy.cs.cmu.edu/sharing/oldLaceGoldfish4692/embed",
+"https://academy.cs.cmu.edu/sharing/cornSilkOctopus4585/embed",
+"https://academy.cs.cmu.edu/sharing/snowWolf2265/embed",
+"https://academy.cs.cmu.edu/sharing/limeGreenSquirrel3277/embed",
+"https://academy.cs.cmu.edu/sharing/blueElephant7786/embed",
+"https://academy.cs.cmu.edu/sharing/coralFish4774/embed",
+"https://academy.cs.cmu.edu/sharing/slateGrayAlligator3521/embed",
+"https://academy.cs.cmu.edu/sharing/thistleGoat8459/embed",
+"https://academy.cs.cmu.edu/sharing/powderBlueDeer9890/embed",
+];
+
+function updateVideoChosen()
+{
+  var myIframe = document.getElementById('project');
+  myIframe.src = projectList[document.getElementById('dropdown').value];
+}
+
+function pressLeft()
+{
+  var currentValue = parseInt(document.getElementById('dropdown').value);
+  if (currentValue == 0)
+  {
+    document.getElementById('dropdown').options[projectList.length - 1].selected = true;
+  }
+  else
+  {
+    document.getElementById('dropdown').options[currentValue - 1].selected = true;
+  }
+  updateVideoChosen();
+}
+
+function pressRight()
+{
+  var currentValue = parseInt(document.getElementById('dropdown').value);
+  if (currentValue < (projectList.length - 1))
+  {
+    document.getElementById('dropdown').options[currentValue + 1].selected = true;
+  }
+  else
+  {
+    document.getElementById('dropdown').options[0].selected = true;
+  }
+  updateVideoChosen();
+}
+
+function getCanvasSnapshot()
+{
+	var frame = document.getElementById("frame");
+	var canvas = frame.contentWindow.document.getElementsByTagName("canvas")[0];
+	console.log("this is a log message");
+}
+
+function updateElements()
+{
+	var frame = document.getElementById("frame");
+	frame.style.padding = 100;
+
+	var x = frame.contentDocument.getElementsByClassName("toolbar")[0];
+	x.style.display = "none";
+
+	frame.contentDocument.getElementsById("root").style.background = "green";
+}
+
+// var buffer = 4; //scroll bar buffer
+// var iframe = document.getElementById('mrevideo');
+
+// function pageY(elem) {
+//     return elem.offsetParent ? (elem.offsetTop + pageY(elem.offsetParent)) : elem.offsetTop;
+// } 
+
+// function resizeIframe() {
+//     var height = document.documentElement.clientHeight;
+//     var width = document.documentElement.clientWidth + 16;
+//     height -= pageY(document.getElementById('mrevideo')) + buffer;
+//     height = (height < 0) ? 0 : height;
+//     var newWidth = (height * 16 / 9);
+//     if (newWidth < width)
+//     {
+//       document.getElementById('mrevideo').style.width = (newWidth - 16) + 'px';
+//       document.getElementById('mrevideo').style.height = (height - 9) + 'px';
+//     }
+//     else
+//     {
+//       document.getElementById('mrevideo').style.width = (width - 16) + 'px';
+//       document.getElementById('mrevideo').style.height = ((width * 9 / 16) - 9) + 'px';
+//     }    
+// }
+
+// // .onload doesn't work with IE8 and older.
+// if (iframe.attachEvent) {
+//     iframe.attachEvent("onload", resizeIframe);
+// } else {
+//     iframe.onload=resizeIframe;
+// }
+
+// window.onresize = resizeIframe;
+
+
+// function goBack10Sec()
+// {
+//   var player = videojs.getPlayer('videoPlayer');
+//   var currentTime = player.currentTime();
+//   if (currentTime < 10)
+//   {
+//     player.currentTime(0);
+//   }
+//   else
+//   {
+//     player.currentTime(currentTime - 10);
+//   }
+// }
+
+// function playOrPauseVideo()
+// {
+//   var player = videojs.getPlayer('videoPlayer');
+//   var button = document.getElementById('playPauseButton');
+
+//   if (player)
+//   {
+//     if (player.paused())
+//     {
+//         button.style.background = 'url(img_pause.png)';
+//         player.play();
+//     }
+//     else
+//     {
+//       button.style.background = 'url(img_play.png)';
+//       player.pause();
+//     }
+//   }
+// }
+
+// function resizeIFrameToFitContent( iFrame ) {
+
+//     iFrame.width  = iFrame.contentWindow.document.body.scrollWidth;
+//     iFrame.height = iFrame.contentWindow.document.body.scrollHeight;
+// }
+
+// window.addEventListener('DOMContentLoaded', function(e) {
+
+//     var iFrame = document.getElementById( 'iFrame1' );
+//     resizeIFrameToFitContent( iFrame );
+
+//     // or, to resize all iframes:
+//     var iframes = document.querySelectorAll("iframe");
+//     for( var i = 0; i < iframes.length; i++) {
+//         resizeIFrameToFitContent( iframes[i] );
+//     }
+// } );
+
+// videojs('my-video').ready(function(){
+//     var player = this;
+//     var previousTime = 0;
+//     var currentTime = 0;
+//     var seekStart = null;
+  
+//     player.on('timeupdate', function(){
+//       previousTime = currentTime;
+//       currentTime = player.currentTime();
+//     });
+  
+//     player.on('seeking', function(){
+//       if(seekStart === null) {
+//         seekStart = previousTime;
+//       }
+//     });
+  
+//     player.on('seeked', function() {
+//       if(currentTime > seekStart) {
+//         player.currentTime(seekStart);
+//       }
+//       seekStart = null;
+//     });
+//   });</script>
+</body>
+</html>
