@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CS2 Q2 Helper Videos</title>
+	<link rel="stylesheet" href="styles.css">
+	<link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
+	<style>
+		html
+		{
+		    background-color:#000000;
+		    font-size: 1.2em;
+		    font-family: Arial, Helvetica, sans-serif;
+		    border:0px;
+		    padding:5px;
+		    margin-left: 0px;
+		    margin-right: 0px;
+		}
+
+		body
+		{
+		    border:0px;
+		    padding:0px;
+		    margin-left: 0px;
+		    margin-right: 0px;
+		}
+
+		select
+		{
+		    font-size: 1.4em;
+		    padding: 5px;
+		    width: 100%;
+
+		}
+
+		.parent {
+		    display: grid;
+		    place-items: center;
+		}
+
+		.visual {
+		    aspect-ratio: 16 / 9;
+		    width: clamp(100px, 100%, 2048px);
+		    background-color: lightgreen;
+		}
+
+		.card {
+		    width: 50%;
+		    display: flex;
+		    flex-direction: column;
+		    padding: 1rem;
+		    background-color:lightblue;
+		}
+
+		.gray
+		{
+		    background-color:gray;
+		}
+
+		button
+		{
+		    height: 90px;
+		    width: 90px;
+		    padding: 40px;
+		    margin-left:10px;
+		    margin-right:30px;
+		}
+
+	</style>
+</head>
+<body onload="resizeIframe()">
+	<select id="dropdown" 
+			style="border: 0px; padding: 10px;"
+			onchange="updateVideoChosen()">
+			<option value="2">Choose a video tutorial...</option>
+			<option value="2">3.1.3 Seasons changing</option>
+			<option value="3">3.1.3 Rolling stars</option>
+			<option value="4">3.1.3 Phone Apps</option>
+			<option value="5">3.2.2 Stormy weather</option>
+			<option value="6">3.2.2 Asteroids</option>
+			<option value="7">5.1.1 Introduction</option>
+			<option value="8">5.2.1 Modeling Space</option>
+			<option value="9">5.2.2 Simulating the Moon Orbit</option>
+			<option value="10">5.2.3 (Optional) The Simulation Physics</option>
+			
+			<option value="11">5.2.4 Planet gravity</option>
+                        <option value="12">5.2.4 Solar System</option>
+                        <option value="13">5.2.4 Halleys comet</option>
+                        <option value="14">5.2.4 Rocket launch</option>
+			
+			<option value="15">5.3.1 Simulating Populations</option>
+			<option value="16">5.3.2 Simulating Ecosystems</option>
+			<option value="17">5.4.1 Creating an Alien Species</option>
+			<option value="18">5.4.2 Decoding Genes</option>
+
+                        <option value="19">5.4.3 Codon positions</option>
+
+			<option value="20">5.4.4 Proteins and Features</option>
+			<option value="21">5.4.5 (Optional) DNA is Data</option>
+
+                        <option value="22">5.4.6 Teeth and Aggressiveness Proteins</option>
+                        <option value="23">5.4.6 Generating DNA</option>
+                        <option value="24">5.4.6 Missing bases</option>		
+<!--
+			<option value="25"></option>
+			<option value="26"></option>
+			<option value="27"></option>
+			<option value="28"></option>
+			<option value="29"></option>
+			<option value="30"></option>
+			<option value="31"></option>
+			<option value="32"></option>
+			<option value="33"></option>
+			<option value="34"></option>
+			<option value="35"></option>
+			<option value="36"></option>
+			<option value="37"></option>
+			<option value="38"></option>
+			<option value="39"></option>
+			<option value="40"></option>
+			<option value="41"></option>
+			<option value="42"></option>
+			<option value="43"></option>
+			<option value="44"></option>
+			<option value="45"></option>
+			<option value="46"></option>
+			<option value="47"></option>
+			<option value="48"></option>
+			<option value="49"></option>
+			<option value="50"></option>
+			<option value="51"></option>
+			<option value="52"></option>
+			<option value="53"></option>
+			<option value="54"></option>
+			<option value="55"></option>
+			<option value="56"></option>
+			<option value="57"></option>
+			<option value="58"></option>
+			<option value="59"></option>
+			<option value="60"></option>
+			<option value="61"></option>
+			<option value="62"></option>
+			<option value="63"></option>
+			<option value="64"></option>
+			<option value="65"></option>
+			<option value="66"></option>
+			<option value="67"></option>
+			<option value="68"></option>
+			<option value="69"></option>
+			<option value="70"></option>
+			<option value="71"></option>
+			<option value="72"></option>
+			<option value="73"></option>
+			<option value="74"></option>
+			<option value="75"></option>
+			<option value="76"></option>
+			<option value="77"></option>
+			<option value="78"></option>
+			<option value="79"></option>
+		-->
+		</select>
+	<p style="font-size: 2px;"></p>
+
+	<iframe id="mrevideo" 
+			style="aspect-ratio:16/9; 
+					width:0px; 
+					height:0px;
+					border:black;
+					color:black;
+					background-color: black;"></iframe>
+	<p style="font-size: 10px;"></p>
+	<!-- <iframe id="docsandcolors" 
+			src="https://academy.cs.cmu.edu/docs"
+			width=99%></iframe> -->
+
+	<!-- <video
+		playsinline
+		style="pointer-events: none;"
+		id="videoPlayer"
+		class="video-js"
+		preload="auto"
+		width="100%"
+		data-setup='{ "aspectRatio":"1920:1080", "playbackRates": [1, 1.5, 2] }'
+	>
+	</video> -->
+		<!-- <p>
+			<button style="background: url(img_repeat.png)" id='repeatButton' onclick='goBack10Sec()'></button>
+			<button style="background: url(img_play.png)" id='playPauseButton' onclick='playOrPauseVideo()'></button>
+		</p> -->
+	<!-- <script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script> -->
+	<script>var videosList = ["", "",
+"https://drive.google.com/file/d/11y2bTgSKGF7d8r29AS5BE5euvwLZDkZp/preview",
+"https://drive.google.com/file/d/11rs9eHdO5_tHQqsLNv1KVFDIyOnLosh5/preview",
+"https://drive.google.com/file/d/120qbZX8yQ_Ug09dwKBoLqhhJSjA47H4Z/preview",
+"https://drive.google.com/file/d/123CcTDdsKypUK-iw1PC3jPuyoroEuH4M/preview",
+"https://drive.google.com/file/d/129Vik_r-ipupywdacZaIrvUEX5hvz0l8/preview",
+"https://drive.google.com/file/d/1JWzhAXa7bdJ0GWXQoawzw0103mfTGZ9F/preview",
+"https://drive.google.com/file/d/1JavCH7Bs5JIfUOtvcNey5Saoht_Pncd8/preview",
+"https://drive.google.com/file/d/1JgqQYAlWHauL9y_ryWh3E2Vwv9IWP1HV/preview",
+"https://drive.google.com/file/d/1JjRMbH22vwA51TkCYRJOe4pUCtZpINSy/preview",
+"https://drive.google.com/file/d/1JkcdfAQH3v9zLlreJQu9ORXyHhdyuszy/preview",
+"https://drive.google.com/file/d/1JqDAUVebLRjkAYnPZi2U0TbIUbk8EhJZ/preview",
+"https://drive.google.com/file/d/1JqmsJN3iOjLw5o4a9C8pvZYMGLMrWGig/preview",
+"https://drive.google.com/file/d/1M0kFcSBay8EbSKX5ythK-HU3MNGWUXax/preview",
+"https://drive.google.com/file/d/1MKFYwX0r3zDpIXNRm4LEdwazCIPJJD5b/preview",
+"https://drive.google.com/file/d/1L2UpJfrbn4TWl4BOfbmLOFmDY6gFHUO6/preview",
+"https://drive.google.com/file/d/1L2I6KRL23Hz2-AZGSRDjTGr-MEh5Z_-j/preview",
+"https://drive.google.com/file/d/1Kotp40FBJIAbdP3heyTZWpnT81PWDjDY/preview",
+"https://drive.google.com/file/d/1KaiXDfZVO0lcEa_JBoOjAapS_-W1XTfi/preview",
+"https://drive.google.com/file/d/1KOk8asjAkvV7m4MzOw4P5lgN0sIgYSvz/preview",
+"https://drive.google.com/file/d/1KJFYmoCh78JC-XqIgXp9G0jOu8BJNxHV/preview",
+"https://drive.google.com/file/d/1KItFjLAgsq9tzKmhDEoaZZEwQlvcWYLk/preview",
+"https://drive.google.com/file/d/1K5E8H0j27oDtm47GqBPFwEeSQQeg75BR/preview",
+"https://drive.google.com/file/d/1K4ML6MwUdPmQ2KXtSQ_ifPPpWNML4v_J/preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+"https://drive.google.com/file/d//preview",
+];
+
+function updateVideoChosen()
+{
+  // var player = videojs.getPlayer('videoPlayer');
+  // var value = document.getElementById('dropdown').value;
+  // var url = value + '.mov';
+  // player.src({type: 'video/mp4', src:url});
+
+  // var button = document.getElementById('playPauseButton');
+  // button.style.background = 'url(img_play.png)';
+
+  var myIframe = document.getElementById('mrevideo');
+  myIframe.src = videosList[document.getElementById('dropdown').value];
+}
+
+var buffer = 4; //scroll bar buffer
+var iframe = document.getElementById('mrevideo');
+
+function pageY(elem) {
+    return elem.offsetParent ? (elem.offsetTop + pageY(elem.offsetParent)) : elem.offsetTop;
+} 
+
+function resizeIframe() {
+    var height = document.documentElement.clientHeight;
+    var width = document.documentElement.clientWidth;
+    height -= pageY(document.getElementById('mrevideo')) + buffer;
+    height = (height < 0) ? 0 : height;
+    var newWidth = (height * 16 / 9);
+    if (newWidth < width)
+    {
+      // video is limited by height of window
+      document.getElementById('mrevideo').style.width = (newWidth - 16) + 'px';
+      document.getElementById('mrevideo').style.height = (height - 9) + 'px';
+      // no room for docs
+      document.getElementById('docsandcolors').style.height = 0 + 'px';
+    }
+    else
+    {
+      // video is limited by width of window
+      document.getElementById('mrevideo').style.width = (width - 16) + 'px';
+      document.getElementById('mrevideo').style.height = ((width * 9 / 16) - 9) + 'px';
+      // use remaining height for docs
+      document.getElementById('docsandcolors').style.height = height - ((width * 9 / 16) - 9) - 50+ 'px';
+    }    
+}
+
+// .onload doesn't work with IE8 and older.
+if (iframe.attachEvent) {
+    iframe.attachEvent("onload", resizeIframe);
+} else {
+    iframe.onload=resizeIframe;
+}
+
+window.onresize = resizeIframe;
+
+
+// function goBack10Sec()
+// {
+//   var player = videojs.getPlayer('videoPlayer');
+//   var currentTime = player.currentTime();
+//   if (currentTime < 10)
+//   {
+//     player.currentTime(0);
+//   }
+//   else
+//   {
+//     player.currentTime(currentTime - 10);
+//   }
+// }
+
+// function playOrPauseVideo()
+// {
+//   var player = videojs.getPlayer('videoPlayer');
+//   var button = document.getElementById('playPauseButton');
+
+//   if (player)
+//   {
+//     if (player.paused())
+//     {
+//         button.style.background = 'url(img_pause.png)';
+//         player.play();
+//     }
+//     else
+//     {
+//       button.style.background = 'url(img_play.png)';
+//       player.pause();
+//     }
+//   }
+// }
+
+// function resizeIFrameToFitContent( iFrame ) {
+
+//     iFrame.width  = iFrame.contentWindow.document.body.scrollWidth;
+//     iFrame.height = iFrame.contentWindow.document.body.scrollHeight;
+// }
+
+// window.addEventListener('DOMContentLoaded', function(e) {
+
+//     var iFrame = document.getElementById( 'iFrame1' );
+//     resizeIFrameToFitContent( iFrame );
+
+//     // or, to resize all iframes:
+//     var iframes = document.querySelectorAll("iframe");
+//     for( var i = 0; i < iframes.length; i++) {
+//         resizeIFrameToFitContent( iframes[i] );
+//     }
+// } );
+
+// videojs('my-video').ready(function(){
+//     var player = this;
+//     var previousTime = 0;
+//     var currentTime = 0;
+//     var seekStart = null;
+  
+//     player.on('timeupdate', function(){
+//       previousTime = currentTime;
+//       currentTime = player.currentTime();
+//     });
+  
+//     player.on('seeking', function(){
+//       if(seekStart === null) {
+//         seekStart = previousTime;
+//       }
+//     });
+  
+//     player.on('seeked', function() {
+//       if(currentTime > seekStart) {
+//         player.currentTime(seekStart);
+//       }
+//       seekStart = null;
+//     });
+//   });</script>
+</body>
+
+</html>
